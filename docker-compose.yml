@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_test
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: migrationtest
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306" # hostport:containerport
